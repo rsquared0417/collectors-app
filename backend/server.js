@@ -9,6 +9,7 @@ app.use(express.json());
 const pool = require("./src/config/db");
 const authRoutes = require("./src/routes/auth");
 const sneakersRoutes = require("./src/routes/sneakers");
+const perfumesRoutes = require("./src/routes/perfumes");
 
 app.get("/", (req, res) => {
   res.send("Server is running");
@@ -26,6 +27,7 @@ app.get("/test-db", async (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/sneakers", sneakersRoutes);
+app.use("/api/perfumes", perfumesRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
