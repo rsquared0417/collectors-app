@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Onboarding from "./pages/Onboarding";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SneakersPage from "./pages/SneakersPage";
+import PerfumesPage from "./pages/PerfumesPage";
 
 // Placeholder for now — we'll build this properly soon
 const Dashboard = () => <h1>Dashboard (coming soon)</h1>;
@@ -34,6 +35,14 @@ function App() {
         element={
           <ProtectedRoute>
             <SneakersPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/perfumes"
+        element={
+          <ProtectedRoute>
+            <PerfumesPage />
           </ProtectedRoute>
         }
       />
