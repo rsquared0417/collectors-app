@@ -3,6 +3,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Onboarding from "./pages/Onboarding";
 import ProtectedRoute from "./components/ProtectedRoute";
+import SneakersPage from "./pages/SneakersPage";
 
 // Placeholder for now — we'll build this properly soon
 const Dashboard = () => <h1>Dashboard (coming soon)</h1>;
@@ -25,6 +26,14 @@ function App() {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/sneakers"
+        element={
+          <ProtectedRoute>
+            <SneakersPage />
           </ProtectedRoute>
         }
       />
