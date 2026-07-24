@@ -98,7 +98,31 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = {
-  register,
-  login,
+// UPDATE onboarding choices
+const updateOnboarding = async (req, res) => {
+  const { collects_sneakers, collects_perfumes } = req.body;
+
+  if (!collects_sneakers && !collects_perfumes) {
+    return res.status(400).json({
+      success: false,
+      message: "Select at least one collection type",
+    });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE users 
+       SET collects_sneakers = $1, collects_perfumes = $2 
+       WHERE id = $3
+       RETURNING id, name, email, collects_sneakers, collects_perfumes`,
+      [!!collects_sneakers, !!collects_perfumes, req.userId],
+    );
+
+    res.json({ success: true, user: result.rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: err.message });
+  }
 };
+
+module.exports = { register, login, updateOnboarding };
